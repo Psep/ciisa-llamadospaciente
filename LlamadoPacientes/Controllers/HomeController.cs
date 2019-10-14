@@ -15,7 +15,7 @@ namespace LlamadoPacientes.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Aquí debería ir una descripción de que Java es mejor que .NET";
 
             return View();
         }
