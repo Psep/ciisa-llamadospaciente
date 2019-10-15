@@ -3,28 +3,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using LlamadoPacientes.Models;
+using LlamadoPacientes.Models.Repository;
 
 namespace LlamadoPacientes.Controllers
 {
     public class HomeController : Controller
     {
+        private AtencionRepository atencionRepository;
+
+        public List<Atencion> listAtencion { get; set; }
+        public List<Atencion> listAtencionCarrusel { get; set; }
+
         public ActionResult Index()
         {
+            this.loadAtenciones();
+            this.loadCarrusel();
+            ViewBag.listaAtencion = this.listAtencion;
+            ViewBag.listaCarrusel = this.listAtencionCarrusel;
+
             return View();
         }
 
-        public ActionResult About()
+        private void loadCarrusel()
         {
-            ViewBag.Message = "Aquí debería ir una descripción de que Java es mejor que .NET";
-
-            return View();
+            atencionRepository = new AtencionRepository();
+            listAtencionCarrusel = atencionRepository.listAtencionesCarrusel();
         }
 
-        public ActionResult Contact()
+        private void loadAtenciones()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            atencionRepository = new AtencionRepository();
+            listAtencion = atencionRepository.listUltimasAtenciones();
+            
         }
+        
     }
 }
