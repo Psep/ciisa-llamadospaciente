@@ -1,3 +1,5 @@
-﻿$('.progress-bar-fill').delay(1000).queue(function () {
-    $(this).css('width', '100%')
-});
+﻿setTimeout(function () {
+    $(document).ready(function () {
+        $("#frmHome").submit();
+    });
+}, 10000);
